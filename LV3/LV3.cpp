@@ -11,11 +11,11 @@ int Povrh(int n, int m)
     return Povrh(n - 1, m - 1) + Povrh(n - 1, m);
 }
 int PovrhStogNiz(int a, int b) {
-    time_t t;
-    t = clock();
+   
+    
     int n, m;
-    Stog s1 = Stog(100);
-    Stog s2 = Stog(100);
+    Stog s1 = Stog(1000);
+    Stog s2 = Stog(1000);
     s1.Push(a);
     s2.Push(b);
     int povrh = 0;
@@ -30,15 +30,13 @@ int PovrhStogNiz(int a, int b) {
             s2.Push(m);
         }
     
-    } while (s1.IsEmpty() == 0);
-    t = clock() - t;
-    std::cout << "Povrh Stog sa nizom vrijeme u ms: " << t << std::endl;
+    } while (!s1.IsEmpty());
+   
         return povrh;
 }
 int PovrhStogPovezaniPopis(int a, int b)
 {
-    time_t t;
-    t = clock();
+    
     int n, m;
     StogPP s;
     s.Push(a);
@@ -47,7 +45,7 @@ int PovrhStogPovezaniPopis(int a, int b)
     do {
         m = s.Pop();
         n = s.Pop();
-        if (m == n || n == 1 || m == 0) povrh++;
+        if (m == n || n == 0 ) povrh++;
         else
         {
             s.Push(n - 1);
@@ -55,9 +53,9 @@ int PovrhStogPovezaniPopis(int a, int b)
             s.Push(n - 1);
             s.Push(m);
         }
-    } while (s.IsEmpty() == 0);
-    t = clock() - t;
-    std::cout << "Povrh Stog sa povezanim popisom vrijeme u ms: " << t << std::endl;
+    } while (!s.IsEmpty());
+    
+    
     return povrh;
 }
 int main()
@@ -72,7 +70,13 @@ int main()
     t = clock() - t;
     std::cout << "REZULTAT POVRHA: " << povrh << std::endl;
     std::cout << "Povrh rekurzija vrijeme u ms: " << t << std::endl;
+    t = clock();
     PovrhStogNiz(n, m);
+    t = clock() - t;
+    std::cout << "Povrh Stog sa nizom vrijeme u ms: " << t << std::endl;
+    t = clock();
     PovrhStogPovezaniPopis(n, m);
+    t = clock() - t;
+    std::cout << "Povrh Stog sa povezanim popisom vrijeme u ms: " << t  << std::endl;
 }
 

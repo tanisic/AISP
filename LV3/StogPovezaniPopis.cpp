@@ -9,17 +9,17 @@ class StogPP {
 public:
 	int Sp;
 	oe* head;
-	oe* last;
+	
 
 	StogPP()
 	{
 		 Sp = 0;
 		 head = NULL;
-		 last = NULL;
+		
 	};
 
 	int IsEmpty() {
-		if (last == NULL)
+		if (head == NULL)
 		{
 			return 1;
 		}
@@ -28,8 +28,8 @@ public:
 	void Push(int x) {
 		oe* novi = new oe;
 		novi->x = x;
-		novi->next = last;
-		last = novi;
+		novi->next = head;
+		head = novi;
 	}
 	int Pop()
 	{
@@ -38,10 +38,10 @@ public:
 			std::cout << "Stog je prazan!" <<std::endl;
 			return -1;
 		}
-		int x = last->x;
+		int x = head->x;
 		oe* temp = new oe;
-		temp = last;
-		last = last->next;
+		temp = head;
+		head = head->next;
 		delete temp;
 		return x;
 	}
